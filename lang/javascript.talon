@@ -150,3 +150,28 @@ state reduce:
   key(left)
 
 state spread: "..."
+
+# ross custom commands
+
+# javascript debugging
+console log:
+	insert("console.log()")
+	key(left)
+
+# react commands
+import react: insert("import React from 'react';")
+
+import prop types: insert("import PropTypes from 'prop-types';")
+import (style | stylish | CSS module): insert("import style from './style.module.scss';")
+import classNames: insert("import classNames from 'classnames';")
+import (alex eos | actually 's | alex rios | actually us | actually off | taxi 's | axios ): insert("import axios from 'axios';")
+
+react you state: insert("useState")
+react (use reducer | use reducer): insert("useReducer")
+react (use context | theseContact): insert("useContext")
+react (use effect | use Affect): insert("useEffect")
+prop types upper: insert("PropTypes")
+prop types lower: insert("propTypes")
+
+
+

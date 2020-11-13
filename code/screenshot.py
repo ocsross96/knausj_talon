@@ -20,12 +20,20 @@ class Actions:
         path = os.path.expanduser(os.path.join("~", "Desktop", "screenshot.png"))
         img.write_file(path)
 
-    def screenshot_selection():
+# this was originally screenshot_selection
+    def screenshot_selection_copy():
         """triggers an application is capable of taking a screenshot of a portion of the screen"""
         if active_platform == "windows":
             actions.key("super-shift-s")
         elif active_platform == "mac":
             actions.key("ctrl-shift-cmd-4")
+
+    def screenshot_selection():
+        """triggers an application is capable of taking a screenshot of a portion of the screen"""
+        if active_platform == "windows":
+            actions.key("super-shift-s")
+        elif active_platform == "mac":
+            actions.key("shift-cmd-4")
 
     def screenshot_clipboard():
         """takes a screenshot of the entire screen and saves it to the clipboard"""

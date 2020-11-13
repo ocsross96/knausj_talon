@@ -34,4 +34,21 @@ suspend:
 resume:
   insert("fg")
   key(enter)
-
+terminal clear word left:
+  key(ctrl-w)
+terminal clear line right:
+  key(ctrl-k)
+terminal clear line left:
+  key(ctrl-u)
+terminal start redis:
+  insert("cd")
+  key(enter)
+  insert("cd ../../Applications/redis-3.2.6/src")
+  key(enter)
+  insert("./redis-server")
+  key(enter)
+terminal debug talon:
+  insert("cd")
+  key(enter)
+  insert("tail -f .talon/beta.log")
+  key(enter)

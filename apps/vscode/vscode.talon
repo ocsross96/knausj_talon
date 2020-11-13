@@ -63,7 +63,7 @@ bar explore: user.vscode("workbench.view.explorer")
 bar extensions: user.vscode("workbench.view.extensions")
 bar outline: user.vscode("outline.focus")
 bar run: user.vscode("workbench.view.debug")
-bar search: user.vscode("workbench.view.search")
+( bar search | search tab) : user.vscode("workbench.view.search")
 bar source: user.vscode("workbench.view.scm")
 bar switch: user.vscode("workbench.action.toggleSidebarVisibility")
 
@@ -147,28 +147,28 @@ unfold all: user.vscode("editor.unfoldAll")
 fold comments: user.vscode("editor.foldAllBlockComments")
 
 # Git / Github (not using verb-noun-adjective pattern, mirroring terminal commands.)
-git branch: user.vscode("git.branchFrom")
-git branch this: user.vscode("git.branch")
-git checkout: user.vscode("git.checkout")
-git commit: user.vscode("git.commitStaged")
-git commit undo: user.vscode("git.undoCommit")
-git commit ammend: user.vscode("git.commitStagedAmend")
-git diff: user.vscode("git.openChange")
-git ignore: user.vscode("git.ignore")
-git merge: user.vscode("git.merge")
-git output: user.vscode("git.showOutput")
-git pull: user.vscode("git.pullRebase")
-git push: user.vscode("git.push")
-git push focus: user.vscode("git.pushForce")
-git rebase abort: user.vscode("git.rebaseAbort")
-git reveal: user.vscode("git.revealInExplorer")
-git revert: user.vscode("git.revertChange")
-git stash: user.vscode("git.stash")
-git stash pop: user.vscode("git.stashPop")
-git stage: user.vscode("git.stage")
-git stage all: user.vscode("git.stageAll")
-git unstage: user.vscode("git.unstage")
-git unstage all: user.vscode("git.unstageAll")
+# git branch: user.vscode("git.branchFrom")
+# git branch this: user.vscode("git.branch")
+# git checkout: user.vscode("git.checkout")
+# git commit: user.vscode("git.commitStaged")
+# git commit undo: user.vscode("git.undoCommit")
+# git commit ammend: user.vscode("git.commitStagedAmend")
+# git diff: user.vscode("git.openChange")
+# git ignore: user.vscode("git.ignore")
+# git merge: user.vscode("git.merge")
+# git output: user.vscode("git.showOutput")
+# git pull: user.vscode("git.pullRebase")
+# git push: user.vscode("git.push")
+# git push focus: user.vscode("git.pushForce")
+# git rebase abort: user.vscode("git.rebaseAbort")
+# git reveal: user.vscode("git.revealInExplorer")
+# git revert: user.vscode("git.revertChange")
+# git stash: user.vscode("git.stash")
+# git stash pop: user.vscode("git.stashPop")
+# git stage: user.vscode("git.stage")
+# git stage all: user.vscode("git.stageAll")
+# git unstage: user.vscode("git.unstage")
+# git unstage all: user.vscode("git.unstageAll")
 
 #Debugging
 break point: user.vscode("editor.debug.action.toggleBreakpoint")
@@ -198,5 +198,133 @@ copy [line] up: user.vscode("editor.action.copyLinesUpAction")
 #todo: wtf?
 #select less: user.vscode("Shrink Selection")
 #select (more|this): user.vscode("Expand Selection")
-  
-  
+
+# ross custom commands
+master: key(cmd-p)
+master special:
+ key(cmd-shift-p)
+ key(space)
+
+sidebar toggle: key(cmd-b)
+
+new window: key(shift-cmd-n)
+open: key(cmd-o)
+
+(new file | file new): user.vscode("File: New File")
+
+switch line up: user.vscode("Move line up")
+switch line down: user.vscode("Move line down")
+
+line above: user.vscode("Insert line above")
+line below: user.vscode("Insert line below")
+
+delete line: user.vscode("Delete Line")
+
+zoom in: user.vscode("Editor Font Zoom In")
+zoom out: user.vscode("Editor Font Zoom Out")
+zoom reset: user.vscode("Editor Font Zoom Reset")
+
+add cursor below: user.vscode("Add Cursor Below")
+add cursor above: user.vscode("Add Cursor Above")
+
+comment: user.vscode("Toggle line comment")
+
+split editor: user.vscode("View: Split Editor")
+split editor right: user.vscode("View: Split Editor Right")
+split editor left: user.vscode("View: Split Editor Left")
+split editor down: user.vscode("View: Split Editor Down")
+split editor orthogonal: user.vscode("View: Split Editor Orthogonal")
+
+
+## npm
+
+package manager remove modules:
+  insert("rm -rf node_modules")
+  key(enter)
+
+package manager install save develop:
+  insert("npm install --save-dev")
+  edit.word_left()
+  edit.word_left()
+  key(left)
+  key(left)
+  key(left)
+  key(space)
+
+package manager install save:
+  insert("npm install --save")
+  edit.word_left()
+  key(left)
+  key(left)
+  key(left)
+  key(space)
+
+package manager install:
+  insert("npm install")
+
+package manager start:
+  insert("npm start")
+  key(enter)
+
+package manager develop build:
+  insert("npm run dev:build")
+  key(enter)
+
+package manager develop:
+  insert("npm run dev")
+  key(enter)
+
+package manager build watch:
+  insert("npm run build:watch")
+  key(enter)
+
+package manager build:
+  insert("npm run build")
+  key(enter)
+
+package manager serve:
+  insert("npm run serve")
+  key(enter)
+
+package manager test watch:
+  insert("npm run test:watch")
+  key(enter)
+
+package manager test coverage:
+  insert("npm run test:coverage")
+  key(enter)
+
+package manager test coverage update:
+  insert("npm run test:coverage -- -u")
+  key('enter')
+
+package manager test update:
+  insert("npm run test -- -u")
+  key(enter)
+
+package manager test:
+  insert("npm run test")
+  key(enter)
+
+package manager bootstrap:
+  insert("npm run bootstrap")
+  key(enter)
+
+package manager storybook:
+  insert("npm run storybook")
+  key(enter)
+
+watch module links:
+  insert("wml")
+  key(space)
+
+## ross terminal commands
+terminal focus: user.vscode("Terminal: Focus terminal")
+
+# these are duplicated in terminal.talon:
+terminal clear word left:
+  key(ctrl-w)
+terminal clear line right:
+  key(ctrl-k)
+terminal clear line left:
+  key(ctrl-u)

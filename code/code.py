@@ -50,6 +50,8 @@ extension_lang_map = {
     "vim": "vim",
     "js": "javascript",
     "ts": "typescript",
+    "css": "css",
+    "scss": "css"
 }
 
 # flag indicates whether or not the title tracking is enabled

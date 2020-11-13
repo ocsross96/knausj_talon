@@ -1,6 +1,6 @@
 tag: splits
 -
-split right: user.split_window_right()
+(snap | split) right: user.split_window_right()
 split left: user.split_window_left()
 split down: user.split_window_down()
 split up: user.split_window_up()

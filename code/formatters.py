@@ -120,16 +120,22 @@ formatters_dict = {
         NOSEP,
         first_vs_rest(lambda w: w.lower(), lambda w: "_" + w.lower()),
     ),
+    "ALL_CAPS_SNAKE_CASE": (
+        NOSEP,
+        first_vs_rest(lambda w: w.upper(), lambda w: "_" + w.upper()),
+    ),
     "NO_SPACES": (NOSEP, every_word(lambda w: w)),
     "DASH_SEPARATED": words_with_joiner("-"),
     "DOUBLE_COLON_SEPARATED": words_with_joiner("::"),
     "ALL_CAPS": (SEP, every_word(lambda w: w.upper())),
+    "ALL_CAPS_NO_SPACES": (NOSEP, every_word(lambda w: w.upper())),
     "ALL_LOWERCASE": (SEP, every_word(lambda w: w.lower())),
     "DOUBLE_QUOTED_STRING": (SEP, surround('"')),
     "SINGLE_QUOTED_STRING": (SEP, surround("'")),
     "SPACE_SURROUNDED_STRING": (SEP, surround(" ")),
     "DOT_SEPARATED": words_with_joiner("."),
     "SLASH_SEPARATED": (NOSEP, every_word(lambda w: "/" + w)),
+    "CAPITALIZE_FIRST_WORD_THEN_NO_SPACES": (NOSEP, first_vs_rest(lambda w: w.capitalize(), lambda w: w.lower())),
     "CAPITALIZE_FIRST_WORD": (SEP, first_vs_rest(lambda w: w.capitalize())),
     "CAPITALIZE_ALL_WORDS": (
         SEP,
@@ -137,6 +143,7 @@ formatters_dict = {
         if i == 0 or word not in words_to_keep_lowercase
         else word,
     ),
+    "STUD_CASE": (NOSEP, every_word(lambda w: w.capitalize())),
     "FIRST_THREE": (NOSEP, lambda i, word, _: word[0:3]),
     "FIRST_FOUR": (NOSEP, lambda i, word, _: word[0:4]),
     "FIRST_FIVE": (NOSEP, lambda i, word, _: word[0:5]),
@@ -145,14 +152,19 @@ formatters_dict = {
 # This is the mapping from spoken phrases to formatters
 formatters_words = {
     "allcaps": formatters_dict["ALL_CAPS"],
+    "yeller": formatters_dict["ALL_CAPS"],
     "alldown": formatters_dict["ALL_LOWERCASE"],
-    "camel": formatters_dict["PRIVATE_CAMEL_CASE"],
+    # "camel": formatters_dict["PRIVATE_CAMEL_CASE"],
+    "capitalise": formatters_dict["CAPITALIZE_FIRST_WORD_THEN_NO_SPACES"],
+    "cram": formatters_dict["PRIVATE_CAMEL_CASE"],
+    "criffed": formatters_dict["PUBLIC_CAMEL_CASE"],
     "dotted": formatters_dict["DOT_SEPARATED"],
     "dubstring": formatters_dict["DOUBLE_QUOTED_STRING"],
     "dunder": formatters_dict["DOUBLE_UNDERSCORE"],
-    "hammer": formatters_dict["PUBLIC_CAMEL_CASE"],
+    # "hammer": formatters_dict["PUBLIC_CAMEL_CASE"],
     "kebab": formatters_dict["DASH_SEPARATED"],
-    "packed": formatters_dict["DOUBLE_COLON_SEPARATED"],
+    "spine": formatters_dict["DASH_SEPARATED"],
+    #"packed": formatters_dict["DOUBLE_COLON_SEPARATED"],
     "padded": formatters_dict["SPACE_SURROUNDED_STRING"],
     # "say": formatters_dict["NOOP"],
     "sentence": formatters_dict["CAPITALIZE_FIRST_WORD"],
@@ -162,6 +174,9 @@ formatters_words = {
     # "speak": formatters_dict["NOOP"],
     "string": formatters_dict["SINGLE_QUOTED_STRING"],
     "title": formatters_dict["CAPITALIZE_ALL_WORDS"],
+    "tridal": formatters_dict["CAPITALIZE_ALL_WORDS"],
+    "yellsnik": formatters_dict["ALL_CAPS_SNAKE_CASE"],
+    "yellsmash": formatters_dict["ALL_CAPS_NO_SPACES"],
     # disable a few formatters for now
     # "tree": formatters_dict["FIRST_THREE"],
     # "quad": formatters_dict["FIRST_FOUR"],
@@ -184,7 +199,6 @@ def formatters(m) -> str:
 @mod.capture
 def format_text(m) -> str:
     "Formats the text and returns a string"
-
 
 @mod.action_class
 class Actions:

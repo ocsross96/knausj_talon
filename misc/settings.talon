@@ -1,0 +1,2 @@
+settings():
+    speech.engine = 'draconity'
