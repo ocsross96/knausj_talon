@@ -1,9 +1,8 @@
-app: Notepad++ : a free (GNU) source code editor
-app: notepad++.exe
+app: notepad_plus_plus
 -
-tag(): find_and_replace
-tag(): line_commands
-tag(): tabs
+tag(): user.find_and_replace
+tag(): user.line_commands
+tag(): user.tabs
 action(app.tab_previous):
 	key(ctrl-pageup)
 action(app.tab_next):
@@ -16,3 +15,5 @@ action(edit.line_swap_up):
 	key(ctrl-shift-up)
 action(edit.line_swap_down):
 	key(ctrl-shift-down)
+action(edit.indent_more): key(tab)
+action(edit.indent_less): key(shift-tab)

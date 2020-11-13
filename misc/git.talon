@@ -1,3 +1,6 @@
+#tag: terminal
+#and tag: user.git
+-
 # Standard commands
 (git|jet) add patch: "git add . -p\n"
 (git|jet) add: "git add "
@@ -92,3 +95,4 @@ git commit highlighted:
     insert("git add ")
     edit.paste()
     insert("\ngit commit\n")
+

@@ -1,6 +1,6 @@
-mode: user.typescript
+mode: user.javascript
 mode: command
-and code.language: typescript
+and code.language: javascript
 -
 tag(): user.code_operators
 tag(): user.code_comment
@@ -34,14 +34,15 @@ action(user.code_state_else):
   insert(" else {}")
   key(left enter)
 
+action(user.code_block): 
+  insert("{}") 
+  key(left enter)
+  
 action(user.code_self): "this"
 
 action(user.code_state_while):
   insert("while ()")
   key(left)
-
-action(user.code_state_do):
-  insert("do ")
 
 action(user.code_state_return):
   insert("return ")
@@ -80,11 +81,12 @@ action(user.code_state_for_each):
   insert(".forEach()")
   key(left)
 
-action(user.code_null): "null"
+action(user.code_break): "break;"
+action(user.code_next): "continue;"
+action(user.code_true): "true"
+action(user.code_false): "false"
 
-action(user.code_private_function): "private "
-action(user.code_protected_function): "protected "
-action(user.code_public_function): "public "
+action(user.code_null): "null"
 
 action(user.code_operator_indirection): ""
 action(user.code_operator_address_of): ""
@@ -126,10 +128,6 @@ action(user.code_operator_bitwise_left_shift_assignment): " <<= "
 action(user.code_operator_bitwise_right_shift): " >> "
 action(user.code_operator_bitwise_right_shift_assignment): " >>= "
 
-state block:
-  insert("{}")
-  key(left enter)
-
 state const: "const "
 
 state let: "let "
@@ -153,3 +151,33 @@ state reduce:
   key(left)
 
 state spread: "..."
+
+^funky <user.text>$: user.code_private_function(text)
+^pro funky <user.text>$: user.code_protected_function(text)
+^pub funky <user.text>$: user.code_public_function(text)
+
+# ross custom commands
+
+# javascript debugging
+console log:
+  insert("console.log()")
+  key(left)
+
+console directory:
+  insert("console.dir()")
+  key(left)
+
+# react commands
+import react: insert("import React from 'react';")
+
+import prop types: insert("import PropTypes from 'prop-types';")
+import (style | stylish | CSS module): insert("import style from './style.module.scss';")
+import classNames: insert("import classNames from 'classnames';")
+import (alex eos | actually 's | alex rios | actually us | actually off | taxi 's | axios ): insert("import axios from 'axios';")
+
+react you state: insert("useState")
+react (use reducer | use reducer): insert("useReducer")
+react (use context | theseContact): insert("useContext")
+react (use effect | use Affect): insert("useEffect")
+prop types upper: insert("PropTypes")
+prop types lower: insert("propTypes")
