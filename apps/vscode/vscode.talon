@@ -331,3 +331,8 @@ terminal clear line right:
 terminal clear line left:
   key(ctrl-u)
 
+# window management / positioning
+snap left: key(alt-cmd-a)
+snap right: key(alt-cmd-s)
+snap fullscreen: key(alt-cmd-f)
+
